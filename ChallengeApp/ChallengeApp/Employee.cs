@@ -23,7 +23,5 @@
         {
             this.score.Add(score);
         }
-        public void Winner(string name) { }
-
     }
 }
