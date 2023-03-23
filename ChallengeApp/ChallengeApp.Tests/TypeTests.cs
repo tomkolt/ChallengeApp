@@ -45,19 +45,14 @@ namespace ChallengeApp.Tests
         public void GetEmployeeShouldReturnDifferentObjects()
         {
             // arrange
-            var emp1 = GetEmployee("Tom");
-            var emp2 = GetEmployee("Tom");
+            var emp1 = GetSurnameEmployee("Tom", "Kolt", 34);
+            var emp2 = GetSurnameEmployee("Mat", "Kolt", 30);
 
             // act
 
 
             // assert
             Assert.AreNotEqual(emp1, emp2);
-        }
-
-        private Employee GetEmployee(string name)
-        {
-            return new Employee(name);
         }
         [Test]
         public void GetSameEmployeeSurnameShouldReturnEquals()
