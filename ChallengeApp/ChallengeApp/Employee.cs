@@ -3,7 +3,6 @@
     public class Employee
     {
         private List<float> grades = new List<float>();
-
         public Employee()
         {
         }
@@ -24,7 +23,7 @@
             }
             else
             {
-                Console.WriteLine("Invalid grade value");
+                throw new Exception("Invalid grade value");
             }
         }
         public void AddGrade(string grade)
@@ -35,7 +34,7 @@
             }
             else
             {
-                Console.WriteLine("String is not a float");
+                throw new Exception("String is not a float");
             }
         }
         public void AddGrade(double grade)
@@ -75,9 +74,7 @@
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong letter");
-                    //this.grades.Add(0);
-                    break;
+                    throw new Exception("Wrong letter");
             }
         }
         public Statistics GetStatistics()
