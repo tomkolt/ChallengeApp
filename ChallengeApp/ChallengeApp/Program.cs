@@ -6,7 +6,7 @@ Console.WriteLine();
 Console.WriteLine("Podaj oceny Pracownika, a w przypadku, gdy chcesz skoñczyæ, wciœnij \"q\"");
 Console.WriteLine();
 
-var employee = new Employee();
+var employee = new Employee("Tom", "Kolt", 34, 'M');
 
 while (true)
 {

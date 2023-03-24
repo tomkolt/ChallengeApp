@@ -45,8 +45,8 @@ namespace ChallengeApp.Tests
         public void GetEmployeeShouldReturnDifferentObjects()
         {
             // arrange
-            var emp1 = GetSurnameEmployee("Tom", "Kolt", 34);
-            var emp2 = GetSurnameEmployee("Mat", "Kolt", 30);
+            var emp1 = GetSurnameEmployee("Tom", "Kolt", 34, 'M');
+            var emp2 = GetSurnameEmployee("Mat", "Kolt", 30, 'M');
 
             // act
 
@@ -58,8 +58,8 @@ namespace ChallengeApp.Tests
         public void GetSameEmployeeSurnameShouldReturnEquals()
         {
             // arrange
-            var emp1 = GetSurnameEmployee("Tom", "Kolt", 34);
-            var emp2 = GetSurnameEmployee("Mat", "Kolt", 30);
+            var emp1 = GetSurnameEmployee("Tom", "Kolt", 34, 'M');
+            var emp2 = GetSurnameEmployee("Mat", "Kolt", 30, 'M');
 
             // act
 
@@ -68,9 +68,9 @@ namespace ChallengeApp.Tests
             Assert.AreEqual(emp1.Surname, emp2.Surname);
         }
 
-        private Employee GetSurnameEmployee(string name, string surname, int age)
+        private Employee GetSurnameEmployee(string name, string surname, int age, char sex)
         {
-            return new Employee(name, surname, age);
+            return new Employee(name, surname, age, sex);
         }
     }
 }

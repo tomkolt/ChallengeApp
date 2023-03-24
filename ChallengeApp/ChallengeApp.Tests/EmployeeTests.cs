@@ -6,7 +6,7 @@ namespace ChallengeApp.Tests
         public void WhenEmployeeGotRatings_ShouldCorrectMaxResult()
         {
             // arrange
-            var employee = new Employee("Tom", "Kolt", 34);
+            var employee = new Employee("Tom", "Kolt", 34, 'M');
             employee.AddGrade(5);
             employee.AddGrade(6);
             employee.AddGrade(8);
@@ -22,7 +22,7 @@ namespace ChallengeApp.Tests
         public void WhenEmployeeGotRatings_ShouldCorrectMinResult()
         {
             // arrange
-            var employee = new Employee("Tom", "Kolt", 34);
+            var employee = new Employee("Tom", "Kolt", 34, 'M');
             employee.AddGrade(5);
             employee.AddGrade(6);
             employee.AddGrade(1);
@@ -38,7 +38,7 @@ namespace ChallengeApp.Tests
         public void WhenEmployeeGotRatings_ShouldCorrectAverageResult()
         {
             // arrange
-            var employee = new Employee("Tom", "Kolt", 34);
+            var employee = new Employee("Tom", "Kolt", 34, 'M');
             employee.AddGrade(2);
             employee.AddGrade(2);
             employee.AddGrade(6);
@@ -54,9 +54,9 @@ namespace ChallengeApp.Tests
         public void RatingsInLetters_ShouldCorrectAverageLetter()
         {
             // arrange
-            var employee1 = new Employee();
-            var employee2 = new Employee();
-            var employee3 = new Employee();
+            var employee1 = new Employee("Tom", "Kolt", 34, 'M');
+            var employee2 = new Employee("Adam", "Kami", 33, 'M');
+            var employee3 = new Employee("Ewe", "Roch", 34, 'K');
 
             employee1.AddGrade('A');
             employee1.AddGrade('b');
