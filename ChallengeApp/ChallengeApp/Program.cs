@@ -1,16 +1,18 @@
 using ChallengeApp;
+using System;
 
 Console.WriteLine("            Witamy w Programie ChallengeApp do oceny Pracowników i Dyrekcji");
 Console.WriteLine("==========================================================================================");
 Console.WriteLine();
 Console.WriteLine("Podaj oceny Pracownika lub Supervisiora, a w przypadku, gdy chcesz skoñczyæ, wciœnij \"q\"");
 Console.WriteLine();
-Console.WriteLine("Wciœnij \"1\", aby oceniæ Pracownika lub \"2\", aby oceniæ Dyrektora");
+Console.WriteLine("Wciœnij \"1\", aby oceniæ Pracownika lub \"2\", aby oceniæ Dyrektora:");
+
 
 var inputCase = Console.ReadLine();
 if (inputCase == "1")
 {
-    var employee = new Employee("Tom", "Kolt", 34, 'M');
+    var employee = new EmployeeInFile("Tom", "Kolt", 34, 'M');
 
     while (true)
     {
@@ -32,7 +34,7 @@ if (inputCase == "1")
     var statistics = employee.GetStatistics();
 
     Console.WriteLine();
-    Console.WriteLine("**********************************");
+    Console.WriteLine("******************************************");
     Console.WriteLine("Poni¿ej kilka danych dla oceny Pracownika:");
     Console.WriteLine($"AVG: {statistics.Average:N2}");
     Console.WriteLine($"Min: {statistics.Min}");
@@ -62,7 +64,7 @@ else if (inputCase == "2")
     var statistics = supervisor.GetStatistics();
 
     Console.WriteLine();
-    Console.WriteLine("**********************************");
+    Console.WriteLine("*****************************************");
     Console.WriteLine("Poni¿ej kilka danych dla oceny Dyrektora:");
     Console.WriteLine($"AVG: {statistics.Average:N2}");
     Console.WriteLine($"Min: {statistics.Min}");
@@ -72,7 +74,7 @@ else
 {
     Console.WriteLine("Wybrano cyfrê spoza limitu. Do widzenia!!!");
 }
-  
+
 
 
 

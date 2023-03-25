@@ -1,14 +1,13 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : Person, IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
         private List<float> grades = new List<float>();
-
-        public Employee(string name, string surname, int age, char sex) : base(name, surname, age, sex)
+        public EmployeeInMemory(string name, string surname, int age, char sex) : base(name, surname, age, sex)
         {
-
         }
-        public void AddGrade(float grade)
+
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -19,19 +18,23 @@
                 throw new Exception("Invalid grade value");
             }
         }
-        public void AddGrade(double grade)
+
+        public override void AddGrade(double grade)
         {
             this.AddGrade((float)grade);
         }
-        public void AddGrade(long grade)
+
+        public override void AddGrade(long grade)
         {
             this.AddGrade((float)grade);
         }
-        public void AddGrade(int grade)
+
+        public override void AddGrade(int grade)
         {
             this.AddGrade((float)grade);
         }
-        public void AddGrade(char grade)
+
+        public override void AddGrade(char grade)
         {
             switch (grade)
             {
@@ -59,7 +62,8 @@
                     throw new Exception("Wrong letter");
             }
         }
-        public void AddGrade(string grade)
+
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
@@ -98,7 +102,8 @@
                 throw new Exception("String is not a float");
             }
         }
-        public Statistics GetStatistics()
+
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;
