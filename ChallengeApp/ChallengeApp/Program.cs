@@ -14,6 +14,12 @@ if (inputCase == "1")
 {
     var employee = new EmployeeInFile("Tom", "Kolt", 34, 'M');
 
+    employee.GradeAdded += EmployeeGradeAdded;
+        void EmployeeGradeAdded(object sender, EventArgs args)
+    {
+        Console.WriteLine("Dodano now¹ ocenê");
+    }
+
     while (true)
     {
         Console.WriteLine("Podaj kolejn¹ ocenê dla Pracownika:");
