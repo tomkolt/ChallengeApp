@@ -1,18 +1,16 @@
 using ChallengeApp;
 using System;
 
-Console.WriteLine("            Witamy w Programie ChallengeApp do oceny Pracowników i Dyrekcji");
+Console.WriteLine("                 Witamy w Programie ChallengeApp do oceny Pracowników");
 Console.WriteLine("==========================================================================================");
 Console.WriteLine();
-Console.WriteLine("Podaj oceny Pracownika lub Supervisiora, a w przypadku, gdy chcesz skoñczyæ, wciœnij \"q\"");
-Console.WriteLine();
-Console.WriteLine("Wciœnij \"1\", aby oceniæ Pracownika lub \"2\", aby oceniæ Dyrektora:");
+Console.WriteLine("Wciœnij \"1\", aby oceniæ Pracownika w pamiêci programu lub \"2\", aby oceniæ do pliku:");
 
 
 var inputCase = Console.ReadLine();
 if (inputCase == "1")
 {
-    var employee = new EmployeeInFile("Tom", "Kolt", 34, 'M');
+    var employee = new EmployeeInMemory("Tom", "Kolt", 34, 'M');
 
     employee.GradeAdded += EmployeeGradeAdded;
         void EmployeeGradeAdded(object sender, EventArgs args)
@@ -22,7 +20,7 @@ if (inputCase == "1")
 
     while (true)
     {
-        Console.WriteLine("Podaj kolejn¹ ocenê dla Pracownika:");
+        Console.WriteLine("Podaj kolejn¹ ocenê dla Pracownika. W przypadku gdy chcesz skoñczyæ, wciœnij \"q\":");
         var input = Console.ReadLine();
         if (input == "q")
         {
@@ -48,11 +46,17 @@ if (inputCase == "1")
 }
 else if (inputCase == "2")
 {
-    var supervisor = new Supervisor("Tom", "Kolt", 34, 'M');
+    var employee = new EmployeeInFile("Tom", "Kolt", 34, 'M');
+
+    employee.GradeAdded += EmployeeGradeAdded;
+    void EmployeeGradeAdded(object sender, EventArgs args)
+    {
+        Console.WriteLine("Dodano now¹ ocenê");
+    }
 
     while (true)
     {
-        Console.WriteLine("Podaj kolejn¹ ocenê dla Dyrektora:");
+        Console.WriteLine("Podaj kolejn¹ ocenê dla Pracownika. W przypadku gdy chcesz skoñczyæ, wciœnij \"q\":");
         var input = Console.ReadLine();
         if (input == "q")
         {
@@ -60,18 +64,18 @@ else if (inputCase == "2")
         }
         try
         {
-            supervisor.AddGrade(input);
+            employee.AddGrade(input);
         }
         catch (Exception e)
         {
             Console.WriteLine($"Exception catched: {e.Message}");
         }
     }
-    var statistics = supervisor.GetStatistics();
+    var statistics = employee.GetStatistics();
 
     Console.WriteLine();
-    Console.WriteLine("*****************************************");
-    Console.WriteLine("Poni¿ej kilka danych dla oceny Dyrektora:");
+    Console.WriteLine("******************************************");
+    Console.WriteLine("Poni¿ej kilka danych dla oceny Pracownika:");
     Console.WriteLine($"AVG: {statistics.Average:N2}");
     Console.WriteLine($"Min: {statistics.Min}");
     Console.WriteLine($"Max: {statistics.Max}");
@@ -80,7 +84,3 @@ else
 {
     Console.WriteLine("Wybrano cyfrê spoza limitu. Do widzenia!!!");
 }
-
-
-
-

@@ -2,8 +2,7 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-        public delegate void GradeAddedDelegate(object sender, EventArgs args);
-        public event GradeAddedDelegate GradeAdded;
+        public override event GradeAddedDelegate GradeAdded;
 
         private List<float> grades = new List<float>();
         public EmployeeInMemory(string name, string surname, int age, char sex) : base(name, surname, age, sex)
@@ -16,7 +15,7 @@
             {
                 this.grades.Add(grade);
 
-                if(GradeAdded != null)
+                if (GradeAdded != null)
                 {
                     GradeAdded(this, new EventArgs());
                 }
@@ -48,23 +47,23 @@
             {
                 case 'A':
                 case 'a':
-                    this.grades.Add(100);
+                    this.AddGrade(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.grades.Add(80);
+                    this.AddGrade(80);
                     break;
                 case 'C':
                 case 'c':
-                    this.grades.Add(60);
+                    this.AddGrade(60);
                     break;
                 case 'D':
                 case 'd':
-                    this.grades.Add(40);
+                    this.AddGrade(40);
                     break;
                 case 'E':
                 case 'e':
-                    this.grades.Add(20);
+                    this.AddGrade(20);
                     break;
                 default:
                     throw new Exception("Wrong letter");
@@ -83,23 +82,23 @@
                 {
                     case 'A':
                     case 'a':
-                        this.grades.Add(100);
+                        this.AddGrade(100);
                         break;
                     case 'B':
                     case 'b':
-                        this.grades.Add(80);
+                        this.AddGrade(80);
                         break;
                     case 'C':
                     case 'c':
-                        this.grades.Add(60);
+                        this.AddGrade(60);
                         break;
                     case 'D':
                     case 'd':
-                        this.grades.Add(40);
+                        this.AddGrade(40);
                         break;
                     case 'E':
                     case 'e':
-                        this.grades.Add(20);
+                        this.AddGrade(20);
                         break;
                     default:
                         throw new Exception("Wrong letter");
@@ -114,38 +113,10 @@
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
 
-            foreach (var grade in this.grades)
+            foreach(var grade in this.grades)
             {
-                if (grade >= 0)
-                {
-                    statistics.Max = Math.Max(statistics.Max, grade);
-                    statistics.Min = Math.Min(statistics.Min, grade);
-                    statistics.Average += grade;
-                }
-            }
-            statistics.Average /= this.grades.Count;
-
-            switch (statistics.Average)
-            {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
+                statistics.AddGrade(grade);
             }
             return statistics;
         }
